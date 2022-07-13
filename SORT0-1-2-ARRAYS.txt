@@ -1,0 +1,79 @@
+Sort an Array of 0s, 1s, and 2s (In-place sorting)
+
+The algorithm we are going to use in this example is also known as the Dutch national flag algorithm or three-way partitioning. The idea here is to sort an array of 0s, 1s, 2s in a single traversal without using extra space or a sorting algorithm.
+Here are the following steps of this algorithm.
+
+i) Declare three variables start=0, mid=0, high= n-1 where n is the length of an array.
+ii) Run a loop until mid<=high and consider three cases on the basis of the value of array 
+[mid].
+
+CASE 1:
+If the value array[mid] is 0.
+Swap (array [start], array [mid])
+Increment low
+Increment mid
+
+CASE 2:-
+If the value of array[mid] is 1. Keep as it is since 1’s should be at the middle of a sorted array.
+Increment mid
+
+CASE 3:-
+
+If array[mid] is 2.
+Swap (array [mid], array [high])
+Decrement high
+Break statement
+The time complexity of this approach is O(n) without using any extra space.
+
+
+/*
+
+
+
+public class Main {
+ 
+     public static void sort(int[] arr) {
+ 
+           int low = 0;
+           int mid = 0;
+           int high = arr.length - 1;
+ 
+           while (mid <= high) {
+            if(arr[mid]==0)
+            {
+            swap(arr,mid,low);
+            low++;
+            mid++;
+            continue;
+            }
+            else if(arr[mid]==1)
+            {
+            mid++;
+            }
+            else
+            {
+            swap(arr, mid, high); 
+            high--;
+            }
+            }
+            }
+      
+ 
+      private static void swap(int[] arr, int start, int end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+     }
+ 
+     public static void main(String[] args) {
+ 
+          int[] arr = { 0, 1, 1, 0, 1, 2, 0, 1, 2 };
+          sort(arr);
+ 
+         for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+         }
+     }
+}
+
+//Time Complexity:-O(n) Space Complexity:=O(1)
