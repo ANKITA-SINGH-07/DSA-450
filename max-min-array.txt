@@ -1,0 +1,38 @@
+Problem Description: Given an array A[] of size n, you need to find the maximum and minimum element present in the array. Your algorithm should make the minimum number of comparisons.
+
+For Example:
+
+Input: A[] = { 4, 2, 0, 8, 20, 9, 2}
+
+Output: Maximum: 20, Minimum: 0
+
+Input: A[] = {-8, -3, -10, -32, -1}
+
+Output: Maximum: -1, Minimum: -32
+
+Solution:-
+
+import java.util.*;
+public class Main
+{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int[] num=new int[5];
+        int max=num[0];
+        int min=num[0];
+        for(int i=0;i<num.length;i++)
+        {
+            num[i]=sc.nextInt();
+        }
+        for(int i=0;i<num.length;i++)
+        {
+            if(num[i]>max)
+            max=num[i];
+            if(num[i]<min)
+            min=num[i];
+        }
+        System.out.println("Maximum no is "+max);
+         System.out.println("Minimum no is "+min);
+    }
+}
+//Time complexity = O(n), Space complexity = O(1)
