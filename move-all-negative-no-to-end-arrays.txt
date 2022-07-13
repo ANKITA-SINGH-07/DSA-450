@@ -1,0 +1,55 @@
+MOVE ALL NEGATIVE NUMBER TO ONE SIDE OF ARRAY:-
+
+Approach:
+1.Swap only when you have negative element at 1st index and positive element at last index.
+2.Increment I if there is positive element at first index.
+3.Increment j if there is negative element at last index.
+
+Solution:-
+
+        public class Main {
+        public static void movenegative(int[] arr) {
+         int i=0;
+         int j=arr.length-1;
+         while(i<j)
+         {
+             //When element at i index is negative last index is positive swap
+             if(arr[i]<0 && arr[j]>=0)
+             {
+                 swap(arr,i,j);
+                 //increment i and j pointers
+                 i++;
+                 j--;
+             }
+             //if element at i is positive simply move on
+             else if(arr[i]>=0)
+             {
+                 i++;
+             }
+             //if element at j is negative simply move on
+             else{
+                 j--;
+             }
+         }
+         
+        }
+      
+ 
+      private static void swap(int[] arr, int start, int end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+     }
+ 
+     public static void main(String[] args) {
+ 
+          int[] arr = {1,-1,2,-2,3 };
+          movenegative(arr);
+ 
+         for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+         }
+     }
+}
+ 
+//time complexity:-O(n),space Complexity:O(1)
