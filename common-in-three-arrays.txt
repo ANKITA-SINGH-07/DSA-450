@@ -1,0 +1,67 @@
+Find common element in three sorted arrays.
+For example, consider the three arrays below:
+[1, 2, 3]
+[1, 3, 4, 5]
+[1, 2, 3, 4, 6]
+All the common integers in the arrays are as follows:
+1
+3
+Solution algorithm
+We know beforehand that the arrays are sorted in non-decreasing order. When we find a common integer, we want to move ahead in each of the arrays to look for another common integer. Otherwise, we are certain that the smaller integer among the three integers cannot be common.
+This is because at least one of the other integers is a larger integer and we only have larger integers as we move ahead in that array. In this scenario, we want to move ahead in only the array that contains the smaller integer.
+Steps
+1.	
+o	Create three variables that will store the sizes of the arrays. This will help to determine whether all the integers in a given array are traversed through.
+o	Let the variables be n1, n2, and n3.
+2.	
+o	Create and initialize three variables that will point to the indices of the arrays. The starting index is 0.
+o	Let the variables be i, j, and k.
+3.	Repeat the following steps until we reach the end of any one of the arrays:
+o	Check whether the integers appointed by i, j, and k are equal or not.
+o	If they are equal, print any of the integers and increase i, j, and k by 1.
+o	Otherwise, increase the index that points to the smaller integer by 1.
+Complexity
+•	Time Complexity: O(N)O(N), where NN is the maximum size among the sizes of the arrays. In the worst case we traverse till the array having the maximum size is evaluated.
+•	Space Complexity: O(1)O(1). We only use some variables that occupy constant extra space.
+Code
+/* Online Java Compiler and Editor */
+public class Main {
+
+    public static void findCommonElements(int[] arr1, int[] arr2, int[] arr3) {
+        int m=arr1.length;
+        int n=arr2.length;
+        int o=arr3.length;
+        int i=0;
+        int j=0;
+        int k=0;
+        while(i<m && j<n && k<o)
+        {
+            if(arr1[i]==arr2[j] && arr2[j]==arr3[k])
+            {
+                System.out.print(arr1[i]+" ");
+                i++;
+                j++;
+                k++;
+                }
+            else if(arr1[i]<arr2[j])
+            {
+                i++;
+            }
+            else if(arr2[j]<arr3[k])
+            {
+               j++;
+            }
+            else
+            {
+                k++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr1[] = {1, 2, 3};
+        int arr2[] = {1, 3, 4, 5};
+        int arr3[] = {1, 2, 3, 4, 6};
+       findCommonElements(arr1, arr2, arr3);
+    }
+}
