@@ -1,0 +1,28 @@
+Program to cyclically rotate an array by one
+Given an array, cyclically rotate the array clockwise by one. 
+Examples:  
+Input:  arr[] = {1, 2, 3, 4, 5}
+Output: arr[] = {5, 1, 2, 3, 4}
+Code:-
+
+import java.util.*;
+class Main {
+    static void cyclicr(int arr[])
+    {
+     int x = arr[arr.length-1], i;
+       for (i = arr.length-1; i > 0; i--)
+          arr[i] = arr[i-1];
+       arr[0] = x;
+    }
+    public static void main(String args[])
+    {
+        int arr1[] = { 1, 2, 4, 5, 6 };
+       
+        int m = arr1.length;
+        cyclicr(arr1);
+        System.out.println(Arrays.toString(arr1));
+    }
+}
+
+//Time Complexity: O(n) As we need to iterate through all the elements 
+Auxiliary Space: O(1)
