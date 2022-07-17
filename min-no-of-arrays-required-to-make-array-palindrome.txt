@@ -1,0 +1,82 @@
+Find minimum number of merge operations to make an array palindrome
+
+Given an array of positive integers. We need to make the given array a ‘Palindrome’. 
+The only allowed operation is”merging” (of two adjacent elements). 
+Merging two adjacent elements means replacing them with their sum.
+The task is to find the minimum number of merge operations required to make the given array a ‘Palindrome’.
+
+Input : arr[] = {15, 4, 15}
+Output : 0
+Array is already a palindrome. So we
+do not need any merge operation.
+
+Input : arr[] = {1, 4, 5, 1}
+Output : 1
+We can make given array palindrome with
+minimum one merging (merging 4 and 5 to
+make 9)
+
+Input : arr[] = {11, 14, 15, 99}
+Output : 3
+We need to merge all elements to make
+a palindrome.
+
+Approach:-
+
+Algorithm
+1. Create two variables i,j. i will point to the start of the array and j to the end.
+Till i  less then or equal to j
+
+If arr[i] = arr[j], then there is no need to merge the elements. Increment i and decrement j
+If arr[i] > arr[j], then do merge operation at index j ie, arr[j-1] = arr[j-1] + arr[j], decrement j and increment the no of merge operations count by 1
+If arr[i] < arr[j], then do merge operation at index i ie, arr[i+1] = arr[i+1] + arr[i], increment i and increment the no of merge operations count by 1.
+
+class Main
+{
+    // Function to find the minimum number of merge operations to make a
+    // given array palindrome
+    private static int findMin(int[] arr)
+    {
+        // stores the minimum number of merge operations needed
+        int count = 0;
+ 
+        // `i` and `j` initially points to endpoints of the array
+        int i = 0, j = arr.length - 1;
+ 
+        // loop till the search space is exhausted
+        while (i < j)
+        {
+            if (arr[i] < arr[j])
+            {
+                // merge item at i'th index with the item at (i+1)'th index
+                arr[i + 1] += arr[i];
+                i++;
+                count++;
+            }
+            else if (arr[i] > arr[j])
+            {
+                // merge item at (j-1)'th index with the item at j'th index
+                arr[j - 1] += arr[j];
+                j--;
+                count++;
+            }
+            // otherwise, ignore both the elements
+            else {
+                i++;
+                j--;
+            }
+        }
+ 
+        return count;
+    }
+ 
+    public static void main(String[] args)
+    {
+        int[] arr = { 6, 1, 4, 3, 1, 7 };
+ 
+        int min = findMin(arr);
+        System.out.println("The minimum number of operations required is " + min);
+    }
+}
+
+The time complexity of the above solution is O(n) and doesn't require any extra space, where n is the size of the input.
