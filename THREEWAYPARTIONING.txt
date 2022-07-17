@@ -1,0 +1,89 @@
+Problem Statement
+Given an array of size n and a range [lowValue, highValue].
+
+The task is to partition the array around the range such that the array is divided into three parts.
+1) All elements smaller than lowValue come first.
+2) All elements in the range lowValue to highValue come next.
+3) All elements greater than highValue appear in the end.
+The individual elements of the three sets can appear in any order.
+
+You are required to return the modified array.
+Example
+Input: arr[] = {1, 14, 5, 20, 4, 2, 54, 20, 87, 98, 3, 1, 32}
+lowValue = 14, highValue = 20
+
+Output: arr[] = {1, 5, 4, 2, 1, 3, 14, 20, 20, 98, 87, 32, 54}
+
+Approach:-
+
+1.Initialize startingPoint = 0 and endingPoint = arr.length-1.
+2.Traverse from i=0 to i<=endingPoint.
+3.Check if arr[i] > highValue. If it is true,
+	Swap arr[i] and arr[endingPoint].
+	Decrement endingPoint by one(endingPoint–).
+4.Else check if arr[i] < lowValue. If it is true,
+	Swap arr[i] and arr[startingPoint].
+	Increment startingPoint by one(startingPoint++).
+	Increment i by one(i++).
+5.Else,
+	Increment i by one(i++).
+6.After traversal, we get our required array.
+
+Code:-
+
+public class Array
+{
+    public static void display(int[] arr)
+    {
+        for(int i=0; i < arr.length; i++)
+        {
+            System.out.print(arr[i] + " ");
+        }
+    }
+    public static void partitionMaker(int[] arr, int lowValue, int highValue)
+    {
+        int startingPoint = 0, endingPoint = arr.length - 1;
+        
+        for (int i=0; i <= endingPoint;)
+        {
+            if(arr[i] > highValue)
+            {
+                int temp = arr[endingPoint];
+                arr[endingPoint] = arr[i];
+                arr[i]= temp;
+                endingPoint--;
+            }
+            
+            else if(arr[i] < lowValue)
+            {
+                int temp = arr[startingPoint];
+                arr[startingPoint] = arr[i];
+                arr[i] = temp;
+                
+                startingPoint++;
+                i++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        
+        display(arr);
+    }
+    
+ public static void main(String[] args) 
+ {
+     int[] arr = {1, 14, 5, 20, 4, 2, 54, 20, 87, 98, 3, 1, 32};
+     
+     int lowValue = 14, highValue = 20;
+     
+     partitionMaker(arr, lowValue, highValue);
+ }
+}
+
+Time and Space Complexity
+The optimized time and space complexity of this problem are as follows:
+
+Time Complexity:-O(N)
+Space Complexity:-O(1)
